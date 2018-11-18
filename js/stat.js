@@ -13,7 +13,7 @@ var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
 var INDEX_MORE = 1;
 
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
@@ -22,20 +22,20 @@ var getMaxElement = function(arr) {
   var maxElement = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
-    if(maxElement < arr[i]){
+    if (maxElement < arr[i]) {
       maxElement = arr[i];
     }
-  };
+  }
   // Проверяет пустой ли массив, и если пустой, то запиши в него единицу, и присвой нулевой индекс для максимального елемента.
-  if (arr.length === 0){
+  if (arr.length === 0) {
     arr.push(1);
     maxElement = Math.round(arr[0]);
-  };
+  }
 
   return maxElement;
 };
 
-window.renderStatistics = function(ctx, players, times) {
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -60,5 +60,5 @@ window.renderStatistics = function(ctx, players, times) {
     }
 
     ctx.fillRect(CLOUD_X + (BAR_GAP * (i + INDEX_MORE)) + (BAR_WIDTH * i), (CLOUD_Y + CLOUD_HEIGHT) - BAR_WIDTH - (BAR_HEIGHT * Math.round(times[i]) / maxTime), BAR_WIDTH, (BAR_HEIGHT * Math.round(times[i]) / maxTime));
-  };
+  }
 };
