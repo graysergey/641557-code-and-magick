@@ -54,7 +54,7 @@ window.renderStatistics = function(ctx, players, times) {
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 54, 255, 0.5';
+      ctx.fillStyle = 'rgba(0, 54, 255, 0.5'; //Здесь будет случайная прозрачность
     }
 
     ctx.fillRect(CLOUD_X + (BAR_GAP * (i + INDEX_MORE)) + (BAR_WIDTH * i), (CLOUD_Y + CLOUD_HEIGHT) - BAR_WIDTH - (BAR_HEIGHT * times[i] / maxTime), BAR_WIDTH, (BAR_HEIGHT * times[i] / maxTime));
