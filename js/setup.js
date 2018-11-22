@@ -6,7 +6,7 @@ var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
 var similarListElement = document.querySelector('.setup-similar-list');
-
+// Находим фрагмент с данными в шаблоне
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
@@ -29,7 +29,7 @@ var wizards = [
     coatColor: 'rgb(127, 127, 127)'
   }
 ];
-
+// Создает мага из входящего массива объектов
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -37,7 +37,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   return wizardElement;
 };
-
+// Создает DOM фрагмент, и записывает в него, из цыкла всех созданных магов
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
