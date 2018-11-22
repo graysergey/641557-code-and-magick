@@ -11,24 +11,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-var wizards = [
-  {
-    name: WIZARD_NAMES[0],
-    coatColor: 'rgb(241, 43, 107)'
-  },
-  {
-    name: WIZARD_NAMES[1],
-    coatColor: 'rgb(215, 210, 55)'
-  },
-  {
-    name: WIZARD_NAMES[2],
-    coatColor: 'rgb(101, 137, 164)'
-  },
-  {
-    name: WIZARD_NAMES[3],
-    coatColor: 'rgb(127, 127, 127)'
-  }
-];
+var wizards = [];
 
 var names = [
   'Иван',
@@ -52,7 +35,7 @@ var surNames = [
   'Ирвинг'
 ];
 
-var coatsColor = [
+var coatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -61,13 +44,24 @@ var coatsColor = [
   'rgb(0, 0, 0)'
 ];
 
-var eyesColor = [
+var eyesColors = [
   'black',
   'red',
   'blue',
   'yellow',
   'green'
 ];
+
+// Создаем функцию генерирования объектов
+var creationObject = function (namesWizards, surNameWizards, coatColorsWizards, eyesColorsWizards) {
+  var object = {};
+  object.name = namesWizards[0] + ' ' + surNameWizards[0];
+  object.coatColor = coatColorsWizards[0];
+  object.eyesColor = eyesColorsWizards[0];
+  return object;
+};
+
+console.log(creationObject(names, surNames, coatColors, eyesColors));
 
 // Создает мага из входящего массива объектов
 var renderWizard = function (wizard) {
