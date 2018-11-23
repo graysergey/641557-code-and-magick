@@ -1,7 +1,5 @@
 'use strict';
 
-var WIZARD_NAMES = ['Дамблдор', 'Волдеморт', 'Доктор Стрендж', 'Гарри Поттер'];
-
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
@@ -10,8 +8,6 @@ var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
-
-var wizards = [];
 
 var names = [
   'Иван',
@@ -52,16 +48,28 @@ var eyesColors = [
   'green'
 ];
 
-// Создаем функцию генерирования объектов
-var creationObject = function (namesWizards, surNameWizards, coatColorsWizards, eyesColorsWizards) {
-  var object = {};
-  object.name = namesWizards[0] + ' ' + surNameWizards[0];
-  object.coatColor = coatColorsWizards[0];
-  object.eyesColor = eyesColorsWizards[0];
-  return object;
+var wizards = [];
+
+// Создает рандомное число на основе входящего массива
+var createRandom = function (arr) {
+  var rand = Math.floor(Math.random() * arr.length);
+
+  return rand;
 };
 
-console.log(creationObject(names, surNames, coatColors, eyesColors));
+// Создает массив объектов 4 шт.
+var creationWizardList = function (namesWizards, surNameWizards, coatColorsWizards, eyesColorsWizards) {
+  for (var i = 0; i < 4; i++) {
+    var object = {};
+    object.name = namesWizards[createRandom(namesWizards)] + ' ' + surNameWizards[createRandom(surNameWizards)];
+    object.coatColor = coatColorsWizards[createRandom(coatColorsWizards)];
+    object.eyesColor = eyesColorsWizards[createRandom(eyesColorsWizards)];
+    wizards.push(object);
+  }
+  return wizards;
+};
+
+creationWizardList(names, surNames, coatColors, eyesColors);
 
 // Создает мага из входящего массива объектов
 var renderWizard = function (wizard) {
