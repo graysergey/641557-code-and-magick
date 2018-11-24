@@ -48,42 +48,50 @@ var eyesColors = [
   'green'
 ];
 
-var wizards = [];
-
 // Создает рандомное число на основе входящего массива
-var createRandom = function (arr) {
-  var rand = Math.floor(Math.random() * arr.length);
+var getRandomValue = function (arr) {
+  var randomValue = Math.floor(Math.random() * arr.length);
 
-  return rand;
+  return randomValue;
 };
 
-// Создает массив объектов 4 шт.
-var creationWizardList = function (namesWizards, surNameWizards, coatColorsWizards, eyesColorsWizards) {
-  for (var i = 0; i < 4; i++) {
-    var object = {};
-    object.name = namesWizards[createRandom(namesWizards)] + ' ' + surNameWizards[createRandom(surNameWizards)];
-    object.coatColor = coatColorsWizards[createRandom(coatColorsWizards)];
-    object.eyesColor = eyesColorsWizards[createRandom(eyesColorsWizards)];
-    wizards.push(object);
+// Создает массив объектов
+var createWizards = function (wizardsCount) {
+  var wizards = [];
+  for (var i = 0; i < wizardsCount; i++) {
+    var wizardName = names[getRandomValue(names)] + ' ' + surNames[getRandomValue(surNames)];
+    var coatWizard = coatColors[getRandomValue(coatColors)];
+    var eyesWizard = eyesColors[getRandomValue(eyesColors)];
+
+    var wizard = {
+      name: wizardName,
+      coatColor: coatWizard,
+      eyesColor: eyesWizard
+    };
+    wizards.push(wizard);
   }
   return wizards;
 };
 
-creationWizardList(names, surNames, coatColors, eyesColors);
-
 // Создает мага из входящего массива объектов
-var renderWizard = function (wizard) {
+var getWizardElement = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+
   return wizardElement;
 };
-// Создает DOM фрагмент, и записывает в него, из цыкла всех созданных магов
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < wizards.length; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
-}
 
-similarListElement.appendChild(fragment);
+// Создает DOM фрагмент, и записывает в него, из цыкла всех созданных магов
+var getWizardFragment = function (fragmentWizards) {
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < fragmentWizards.length; i++) {
+    fragment.appendChild(getWizardElement(fragmentWizards[i]));
+  }
+  return fragment;
+};
+
+similarListElement.appendChild(getWizardFragment(createWizards(4)));
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
