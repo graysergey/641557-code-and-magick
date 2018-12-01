@@ -45,8 +45,16 @@ var eyesColors = [
   'green'
 ];
 
-// Создает рандомное число на основе входящего массива
-var getRandomValue = function (arr) {
+var fireballs = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+// Рандомный индекс из массива
+var getRandomIndex = function (arr) {
   var randomValue = Math.floor(Math.random() * arr.length);
 
   return randomValue;
@@ -56,9 +64,9 @@ var getRandomValue = function (arr) {
 var createWizards = function (wizardsCount) {
   var wizards = [];
   for (var i = 0; i < wizardsCount; i++) {
-    var wizardName = names[getRandomValue(names)] + ' ' + surNames[getRandomValue(surNames)];
-    var coatWizard = coatColors[getRandomValue(coatColors)];
-    var eyesWizard = eyesColors[getRandomValue(eyesColors)];
+    var wizardName = names[getRandomIndex(names)] + ' ' + surNames[getRandomIndex(surNames)];
+    var coatWizard = coatColors[getRandomIndex(coatColors)];
+    var eyesWizard = eyesColors[getRandomIndex(eyesColors)];
 
     var wizard = {
       name: wizardName,
@@ -102,10 +110,18 @@ var ENTER__KEYCODE = 13;
 var userDialog = document.querySelector('.setup');
 var setupOpenIcon = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
-var inputUserName = userDialog.querySelector('.setup-user-name');
+var inputUser = userDialog.querySelector('.setup-user-name');
+
+var isEnterEvent = function (evt) {
+  return evt.keyCode === ENTER__KEYCODE;
+};
+
+var isEscapeEvt = function (evt) {
+  return evt.keyCode === ESC__KEYCODE;
+};
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC__KEYCODE) {
+  if (isEscapeEvt(evt)) {
     closePopup();
   }
 };
@@ -126,8 +142,7 @@ setupOpenIcon.addEventListener('click', function () {
 
 setupOpenIcon.addEventListener('keydown', function (evt) {
   evt.preventDefault();
-
-  if (evt.keyCode === ENTER__KEYCODE) {
+  if (isEnterEvent(evt)) {
     openPopup();
   }
 });
@@ -140,9 +155,43 @@ setupClose.addEventListener('click', function (evt) {
 setupClose.addEventListener('keydown', function (evt) {
   evt.preventDefault();
 
-  if (evt.keyCode === ENTER__KEYCODE) {
+  if (isEnterEvent(evt)) {
     closePopup();
   }
 });
 
+inputUser.addEventListener('keydown', function (evt) {
+  if (isEscapeEvt(evt)) {
+    evt.stopPropagation();
+  }
+});
 
+// Изменение стилей персонажа
+
+// Изменение цвета плаща
+var coatWizard = document.querySelector('.setup-wizard .wizard-coat');
+var inputCoatWizard = document.querySelector('.setup-wizard-form')
+  .querySelector('[name="coat-color"]');
+
+coatWizard.addEventListener('click', function () {
+  coatWizard.style.fill = coatColors[getRandomIndex(coatColors)];
+  inputCoatWizard.setAttribute('name', 'coatWizard.style.fill');
+});
+
+// Изменение цвета глаз
+var eyesWizard = document.querySelector('.setup-wizard .wizard-eyes');
+var inputEyesWizard = document.querySelector('[name="eyes-color"]');
+
+eyesWizard.addEventListener('click', function () {
+  eyesWizard.style.fill = eyesColors[getRandomIndex(eyesColors)];
+  inputEyesWizard.setAttribute('name', eyesWizard.style.fill);
+});
+
+// Изменение цвета фаерболов
+var fireballWizard = document.querySelector('.setup-fireball-wrap');
+var inputFireballWizard = fireballWizard.querySelector('input');
+
+fireballWizard.addEventListener('click', function () {
+  fireballWizard.style.background = fireballs[getRandomIndex(fireballs)];
+  inputFireballWizard.setAttribute('name', fireballWizard.style.fill);
+});
