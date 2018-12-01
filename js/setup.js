@@ -1,8 +1,5 @@
 'use strict';
 
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
-
 var similarListElement = document.querySelector('.setup-similar-list');
 // Находим фрагмент с данными в шаблоне
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
@@ -94,4 +91,47 @@ var getWizardFragment = function (fragmentWizards) {
 };
 
 similarListElement.appendChild(getWizardFragment(createWizards(4)));
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+// Показывает вкладку (список магов)
+document.querySelector('.setup-similar').classList.remove('hidden');
+
+// Открытие закрытие окна настройки персонажа
+var ESC__KEYCODE = 27;
+var ENTER__KEYCODE = 13;
+
+var userDialog = document.querySelector('.setup');
+var setupOpenIcon = document.querySelector('.setup-open');
+var setupClose = userDialog.querySelector('.setup-close');
+
+setupOpenIcon.addEventListener('click', function () {
+  userDialog.classList.remove('hidden');
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ESC__KEYCODE) {
+      userDialog.classList.add('hidden');
+    }
+  });
+});
+
+setupOpenIcon.addEventListener('keydown', function (evt) {
+  evt.preventDefault();
+
+  if (evt.keyCode === ENTER__KEYCODE) {
+    userDialog.classList.remove('hidden');
+  }
+});
+
+setupClose.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  userDialog.classList.add('hidden');
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  evt.preventDefault();
+
+  if (evt.keyCode === ENTER__KEYCODE) {
+    userDialog.classList.add('hidden');
+  }
+});
+
+
