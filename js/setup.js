@@ -175,7 +175,7 @@ var inputCoatWizard = document.querySelector('.setup-wizard-form')
 
 coatWizard.addEventListener('click', function () {
   coatWizard.style.fill = coatColors[getRandomIndex(coatColors)];
-  inputCoatWizard.setAttribute('name', 'coatWizard.style.fill');
+  inputCoatWizard.setAttribute('value', 'coatWizard.style.fill');
 });
 
 // Изменение цвета глаз
@@ -184,7 +184,7 @@ var inputEyesWizard = document.querySelector('[name="eyes-color"]');
 
 eyesWizard.addEventListener('click', function () {
   eyesWizard.style.fill = eyesColors[getRandomIndex(eyesColors)];
-  inputEyesWizard.setAttribute('name', eyesWizard.style.fill);
+  inputEyesWizard.setAttribute('value', eyesWizard.style.fill);
 });
 
 // Изменение цвета фаерболов
@@ -193,5 +193,5 @@ var inputFireballWizard = fireballWizard.querySelector('input');
 
 fireballWizard.addEventListener('click', function () {
   fireballWizard.style.background = fireballs[getRandomIndex(fireballs)];
-  inputFireballWizard.setAttribute('name', fireballWizard.style.fill);
+  inputFireballWizard.setAttribute('name', fireballWizard.style.background);
 });
