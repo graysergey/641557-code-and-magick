@@ -111,6 +111,8 @@ var userDialog = document.querySelector('.setup');
 var setupOpenIcon = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
 var inputUser = userDialog.querySelector('.setup-user-name');
+var popupStartCoordinates;
+
 
 var isEnterEvent = function (evt) {
   return evt.keyCode === ENTER__KEYCODE;
@@ -123,12 +125,20 @@ var isEscapeEvt = function (evt) {
 var onPopupEscPress = function (evt) {
   if (isEscapeEvt(evt)) {
     closePopup();
+    changeCoordinates();
   }
 };
 
 var openPopup = function () {
   userDialog.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+
+  // записываем стартовые координаты попапа
+  popupStartCoordinates = {
+    x: userDialog.offsetLeft,
+    y: userDialog.offsetTop
+  };
+  setupClose.addEventListener('click', changeCoordinates);
 };
 
 var closePopup = function () {
@@ -165,6 +175,12 @@ inputUser.addEventListener('keydown', function (evt) {
     evt.stopPropagation();
   }
 });
+
+// Меняем координаты попапа
+var changeCoordinates = function () {
+  userDialog.style.top = popupStartCoordinates.y + 'px';
+  userDialog.style.left = popupStartCoordinates.x + 'px';
+};
 
 // Изменение стилей персонажа
 
