@@ -6,22 +6,15 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-// Рандомный индекс из массива
-var getRandomIndex = function (arr) {
-  var randomValue = Math.floor(Math.random() * arr.length);
-
-  return randomValue;
-};
-
 // Создает массив объектов
 var createWizards = function (wizardsCount) {
   var wizards = [];
   for (var i = 0; i < wizardsCount; i++) {
     var wizardName = window.initialDataWizards
-      .names[getRandomIndex(window.initialDataWizards.names)] + ' ' + window.initialDataWizards
-      .surNames[getRandomIndex(window.initialDataWizards.surNames)];
-    var coatWizard = window.initialDataWizards.coatColors[getRandomIndex(window.initialDataWizards.coatColors)];
-    var eyesWizard = window.initialDataWizards.eyesColors[getRandomIndex(window.initialDataWizards.eyesColors)];
+      .names[window.util.getRandomIndex(window.initialDataWizards.names)] + ' ' + window.initialDataWizards
+      .surNames[window.util.getRandomIndex(window.initialDataWizards.surNames)];
+    var coatWizard = window.initialDataWizards.coatColors[window.util.getRandomIndex(window.initialDataWizards.coatColors)];
+    var eyesWizard = window.initialDataWizards.eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
 
     var wizard = {
       name: wizardName,
@@ -136,36 +129,3 @@ var changeCoordinates = function () {
   userDialog.style.top = popupStartCoordinates.y + 'px';
   userDialog.style.left = popupStartCoordinates.x + 'px';
 };
-
-// Изменение стилей персонажа
-
-// Изменение цвета плаща
-var coatWizard = document.querySelector('.setup-wizard .wizard-coat');
-var inputCoatWizard = document.querySelector('.setup-wizard-form')
-  .querySelector('[name="coat-color"]');
-
-coatWizard.addEventListener('click', function () {
-  coatWizard.style.fill = window.initialDataWizards
-    .coatColors[getRandomIndex(window.initialDataWizards.coatColors)];
-  inputCoatWizard.setAttribute('value', 'coatWizard.style.fill');
-});
-
-// Изменение цвета глаз
-var eyesWizard = document.querySelector('.setup-wizard .wizard-eyes');
-var inputEyesWizard = document.querySelector('[name="eyes-color"]');
-
-eyesWizard.addEventListener('click', function () {
-  eyesWizard.style.fill = window.initialDataWizards
-    .eyesColors[getRandomIndex(window.initialDataWizards.eyesColors)];
-  inputEyesWizard.setAttribute('value', eyesWizard.style.fill);
-});
-
-// Изменение цвета фаерболов
-var fireballWizard = document.querySelector('.setup-fireball-wrap');
-var inputFireballWizard = fireballWizard.querySelector('input');
-
-fireballWizard.addEventListener('click', function () {
-  fireballWizard.style.background = window.initialDataWizards
-    .fireballs[getRandomIndex(window.initialDataWizards.fireballs)];
-  inputFireballWizard.setAttribute('name', fireballWizard.style.background);
-});
