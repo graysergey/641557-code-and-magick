@@ -63,10 +63,6 @@
   var inputUser = userDialog.querySelector('.setup-user-name');
   var popupStartCoordinates;
 
-  window.util.isEnterEvent();
-
-  window.util.isEscapeEvt();
-
   var onPopupEscPress = function (evt) {
     if (window.util.isEscapeEvt(evt)) {
       closePopup();

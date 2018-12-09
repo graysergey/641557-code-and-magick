@@ -1,5 +1,4 @@
 'use strict';
-
 (function () {
 
   var CLOUD_WIDTH = 420;
@@ -48,4 +47,3 @@
     }
   };
 })();
-
