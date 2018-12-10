@@ -7,7 +7,6 @@
     // Рандомный индекс из массива
     getRandomIndex: function (arr) {
       var randomValue = Math.floor(Math.random() * arr.length);
-
       return randomValue;
     },
 
@@ -20,9 +19,7 @@
     },
 
     getMaxValue: function (arr) {
-
       var maxValue = arr[0];
-
       for (var i = 0; i < arr.length; i++) {
         if (maxValue < arr[i]) {
           maxValue = arr[i];
@@ -33,8 +30,12 @@
         arr.push(1);
         maxValue = Math.round(arr[0]);
       }
-
       return maxValue;
+    },
+
+    renderCloud: function (ctx, x, y, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, Window.const.CLOUD_WIDTH, Window.const.CLOUD_HEIGHT);
     }
   };
 })();

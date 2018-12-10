@@ -1,14 +1,10 @@
 'use strict';
 (function () {
 
-  var renderCloud = function (ctx, x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, Window.const.CLOUD_WIDTH, Window.const.CLOUD_HEIGHT);
-  };
-
   window.renderStatistics = function (ctx, players, times) {
-    renderCloud(ctx, Window.const.CLOUD_X + Window.const.GAP, Window.const.CLOUD_Y + Window.const.GAP, 'rgba(0, 0, 0, 0.7)');
-    renderCloud(ctx, Window.const.CLOUD_X, Window.const.CLOUD_Y, '#fff');
+    window.util.renderCloud(ctx, Window.const.CLOUD_X + Window.const.GAP, Window.const.CLOUD_Y
+      + Window.const.GAP, 'rgba(0, 0, 0, 0.7)');
+    window.util.renderCloud(ctx, Window.const.CLOUD_X, Window.const.CLOUD_Y, '#fff');
 
     ctx.fillStyle = '#000';
     ctx.font = '16px PT Mono';
