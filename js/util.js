@@ -2,9 +2,6 @@
 
 (function () {
 
-  var ESC__KEYCODE = 27;
-  var ENTER__KEYCODE = 13;
-
   window.util = {
 
     // Рандомный индекс из массива
@@ -15,11 +12,11 @@
     },
 
     isEnterEvent: function (evt) {
-      return evt.keyCode === ENTER__KEYCODE;
+      return evt.keyCode === Window.const.ENTER__KEYCODE;
     },
 
     isEscapeEvt: function (evt) {
-      return evt.keyCode === ESC__KEYCODE;
+      return evt.keyCode === Window.const.ESC__KEYCODE;
     },
 
     getMaxValue: function (arr) {
