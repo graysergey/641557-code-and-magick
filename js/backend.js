@@ -15,7 +15,7 @@
     popup.style.left = 0;
     popup.style.right = 0;
     popup.style.fontSize = '35px';
-    popup.textContent = 'errorMessage';
+    popup.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', popup);
   };
 
@@ -72,10 +72,13 @@
 
   var userDialog = document.querySelector('.setup');
   var form = userDialog.querySelector('.setup-wizard-form');
+
   form.addEventListener('submit', function (evt) {
     save(new FormData(form), function () {
       userDialog.classList.add('hidden');
-    });
+    },
+    onError()
+    );
     evt.preventDefault();
   });
 

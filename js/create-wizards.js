@@ -3,53 +3,31 @@
 (function () {
 
   var similarListElement = document.querySelector('.setup-similar-list');
-  // Находим фрагмент с данными в шаблоне
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-  // Создает массив объектов
-  var createWizards = function (wizardsCount) {
-    var wizards = [];
-    for (var i = 0; i < wizardsCount; i++) {
-      var wizardName = window.initialDataWizards
-        .names[window.util.getRandomIndex(window.initialDataWizards.names)] + ' ' + window.initialDataWizards
-        .surNames[window.util.getRandomIndex(window.initialDataWizards.surNames)];
-      var coatWizard = window.initialDataWizards
-        .coatColors[window.util.getRandomIndex(window.initialDataWizards.coatColors)];
-      var eyesWizard = window.initialDataWizards
-        .eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
-
-      var wizard = {
-        name: wizardName,
-        coatColor: coatWizard,
-        eyesColor: eyesWizard
-      };
-      wizards.push(wizard);
-    }
-    return wizards;
-  };
-
-  // Создает мага из входящего массива объектов
-  var getWizardElement = function (wizard) {
+  var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
 
     return wizardElement;
   };
 
-  // Создает DOM фрагмент, и записывает в него, из цыкла всех созданных магов
-  var getWizardFragment = function (fragmentWizards) {
+  window.backend.load(function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < fragmentWizards.length; i++) {
-      fragment.appendChild(getWizardElement(fragmentWizards[i]));
-    }
-    return fragment;
-  };
 
-  similarListElement.appendChild(getWizardFragment(createWizards(4)));
+    for (var i = 0; i < 4; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
+    }
+    similarListElement.appendChild(fragment);
+
+    document.querySelector('.setup-similar').classList.remove('hidden');
+  },
+
+  window.backend.onError()
+  );
 
 })();
