@@ -32,7 +32,7 @@
   fireballWizard.addEventListener('click', function () {
     fireballWizard.style.backgroundColor = window.initialDataWizards
       .fireballs[window.util.getRandomIndex(window.initialDataWizards.fireballs)];
-    fireballColorInput.setAttribute('value', fireballWizard.style.background);
+    fireballColorInput.setAttribute('value', fireballWizard.style.backgroundColor);
   });
 })();
 
