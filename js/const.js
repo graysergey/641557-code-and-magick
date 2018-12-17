@@ -2,7 +2,7 @@
 
 (function () {
 
-  Window.const = {
+  window.const = {
     ESC__KEYCODE: 27,
     ENTER__KEYCODE: 13,
     CLOUD_WIDTH: 420,
