@@ -59,7 +59,7 @@
     save(new FormData(form), function () {
       userDialog.classList.add('hidden');
     },
-    onError()
+    onError
     );
     evt.preventDefault();
   });

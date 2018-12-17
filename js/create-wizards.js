@@ -26,7 +26,7 @@
     document.querySelector('.setup-similar').classList.remove('hidden');
   },
 
-  window.backend.onError()
+  window.backend.onError
   );
 
 })();
