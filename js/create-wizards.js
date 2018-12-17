@@ -18,7 +18,6 @@
 
   window.backend.load(function (wizards) {
     var fragment = document.createDocumentFragment();
-    console.log(wizards);
     for (var i = 0; i < 4; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
