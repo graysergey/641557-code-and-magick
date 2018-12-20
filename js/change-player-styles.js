@@ -12,7 +12,7 @@
   coatWizard.addEventListener('click', function () {
     coatWizard.style.fill = window.initialDataWizards
       .coatColors[window.util.getRandomIndex(window.initialDataWizards.coatColors)];
-    inputCoatWizard.setAttribute('value', 'coatWizard.style.fill');
+    inputCoatWizard.setAttribute('value', coatWizard.style.fill);
   });
 
   // Изменение цвета глаз
@@ -27,12 +27,13 @@
 
   // Изменение цвета фаерболов
   var fireballWizard = document.querySelector('.setup-fireball-wrap');
-  var inputFireballWizard = fireballWizard.querySelector('input');
+  var fireballColorInput = document.querySelector('input[name="fireball-color"]');
 
   fireballWizard.addEventListener('click', function () {
-    fireballWizard.style.background = window.initialDataWizards
-      .fireballs[window.util.getRandomIndex(window.initialDataWizards.fireballs)];
-    inputFireballWizard.setAttribute('name', fireballWizard.style.background);
+    var colorFireball = window.initialDataWizards.fireballs[window.util.
+      getRandomIndex(window.initialDataWizards.fireballs)];
+    fireballWizard.style.backgroundColor = colorFireball;
+    fireballColorInput.setAttribute('value', colorFireball);
   });
 })();
 

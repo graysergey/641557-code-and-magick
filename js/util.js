@@ -11,11 +11,11 @@
     },
 
     isEnterEvent: function (evt) {
-      return evt.keyCode === Window.const.ENTER__KEYCODE;
+      return evt.keyCode === window.const.ENTER__KEYCODE;
     },
 
     isEscapeEvt: function (evt) {
-      return evt.keyCode === Window.const.ESC__KEYCODE;
+      return evt.keyCode === window.const.ESC__KEYCODE;
     },
 
     getMaxValue: function (arr) {
@@ -35,7 +35,7 @@
 
     renderCloud: function (ctx, x, y, color) {
       ctx.fillStyle = color;
-      ctx.fillRect(x, y, Window.const.CLOUD_WIDTH, Window.const.CLOUD_HEIGHT);
+      ctx.fillRect(x, y, window.const.CLOUD_WIDTH, window.const.CLOUD_HEIGHT);
     }
   };
 })();
