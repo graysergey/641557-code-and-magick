@@ -6,14 +6,23 @@
   var coatColor;
   var eyesColor;
 
-
   var updateWizards = function () {
-    console.log(wizards);
-    var someCoatWizards = wizards.filter(function (it) {
+    var sameCoatAndEyesWizards = wizards.filter(function (it) {
+      return it.colorCoat === coatColor && it.colorEyes === eyesColor;
+    });
+    var sameCoatWizards = wizards.filter(function (it) {
       return it.colorCoat === coatColor;
     });
+    var sameEyesWizards = wizards.filter(function (it) {
+      return it.colorEyes === eyesColor;
+    });
 
-    window.render(someCoatWizards);
+    var filtredWizards = sameCoatAndEyesWizards.concat(sameCoatWizards).concat(sameEyesWizards).concat(wizards);
+
+    var uniqueWizards = filtredWizards.filter(function (it, i) {
+      return filtredWizards.indexOf(it) === i;
+    });
+    window.render(uniqueWizards);
   };
 
   // Обработчик цвета плаща
@@ -33,10 +42,11 @@
   // Обработчик цвета глаз
   var eyesWizard = document.querySelector('.setup-wizard .wizard-eyes');
   var inputEyesWizard = document.querySelector('[name="eyes-color"]');
-
   eyesWizard.addEventListener('click', function () {
-    eyesColor = eyesWizard.style.fill = window.initialDataWizards
+    var newColor = window.initialDataWizards
       .eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
+    eyesWizard.style.fill = newColor;
+    eyesColor = newColor;
     inputEyesWizard.setAttribute('value', eyesColor);
     updateWizards();
   });
