@@ -64,25 +64,15 @@
     }));
   };
 
-  var lastTimeout;
+
   var onEyesChange = function (color) {
     eyesColor = color;
-    if (lastTimeout) {
-      clearTimeout(lastTimeout);
-    }
-    lastTimeout = setTimeout(function () {
-      updateWizards();
-    }, 500);
+    window.debounce(updateWizards);
   };
 
   var onCoatChange = function (color) {
     coatColor = color;
-    if (lastTimeout) {
-      clearTimeout(lastTimeout);
-    }
-    lastTimeout = setTimeout(function () {
-      updateWizards();
-    }, 500);
+    window.debounce(updateWizards);
   };
 
   var successHandler = function (data) {
