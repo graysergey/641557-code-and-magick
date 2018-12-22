@@ -6,17 +6,37 @@
   var coatColor;
   var eyesColor;
 
-  var getRank = function (wizard) {
+  var getRank = function (wizardItem) {
     var rank = 0;
 
-    if (wizard.colorCoat === coatColor) {
+    if (wizardItem.colorCoat === coatColor) {
       rank += 2;
     }
-    if (wizard.colorEyes === eyesColor) {
+    if (wizardItem.colorEyes === eyesColor) {
       rank += 1;
     }
 
     return rank;
+  };
+
+  var namesCompare = function (left, right) {
+    // что если я запишу так?:   --> вроде бы так тоже работает
+    if (left > right) {
+      return 1;
+    }
+    if (left < right) {
+      return -1;
+    }
+    return 0;
+
+    // вместо такой записи:  --> такая запись была по демке
+    // if (left > right) {
+    //   return 1;
+    // } else if (left < right) {
+    //   return -1;
+    // } else {
+    //   return 0;
+    // }
   };
 
   var updateWizards = function () {
@@ -36,47 +56,13 @@
     //   return filtredWizards.indexOf(it) === i;
     // });
     window.render(wizards.sort(function (left, right) {
-      return getRank(right) - getRank(left);
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesCompare(left.name, right.name);
+      }
+      return rankDiff;
     }));
   };
-
-  // Обработчик цвета плаща
-  var coatWizard = document.querySelector('.setup-wizard .wizard-coat');
-  var inputCoatWizard = document.querySelector('.setup-wizard-form')
-    .querySelector('[name="coat-color"]');
-
-  coatWizard.addEventListener('click', function () {
-    var newColor = window.initialDataWizards
-      .coatColors[window.util.getRandomIndex(window.initialDataWizards.coatColors)];
-    coatWizard.style.fill = newColor;
-    coatColor = newColor;
-    inputCoatWizard.setAttribute('value', coatColor);
-    updateWizards();
-  });
-
-  // Обработчик цвета глаз
-  var eyesWizard = document.querySelector('.setup-wizard .wizard-eyes');
-  var inputEyesWizard = document.querySelector('[name="eyes-color"]');
-  eyesWizard.addEventListener('click', function () {
-    var newColor = window.initialDataWizards
-      .eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
-    eyesWizard.style.fill = newColor;
-    eyesColor = newColor;
-    inputEyesWizard.setAttribute('value', eyesColor);
-    updateWizards();
-  });
-
-  // Обработчик цвета фаерболов
-  var fireballWizard = document.querySelector('.setup-fireball-wrap');
-  var fireballColorInput = document.querySelector('input[name="fireball-color"]');
-
-  fireballWizard.addEventListener('click', function () {
-    var colorFireball = window.initialDataWizards.fireballs[window.util.
-      getRandomIndex(window.initialDataWizards.fireballs)];
-    fireballWizard.style.backgroundColor = colorFireball;
-    fireballColorInput.setAttribute('value', colorFireball);
-  });
-
 
   var successHandler = function (data) {
     wizards = data;
