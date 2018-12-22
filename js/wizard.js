@@ -23,7 +23,7 @@
       .eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
     eyesWizard.style.fill = newColor;
     inputEyesWizard.setAttribute('value', newColor);
-    window.similar.onCoatChange(newColor);
+    window.similar.onEyesChange(newColor);
   });
 
   // Обработчик цвета фаерболов

@@ -64,6 +64,16 @@
     }));
   };
 
+  var onEyesChange = function (color) {
+    eyesColor = color;
+    updateWizards();
+  };
+
+  var onCoatChange = function (color) {
+    coatColor = color;
+    updateWizards();
+  };
+
   var successHandler = function (data) {
     wizards = data;
     updateWizards();
@@ -71,6 +81,9 @@
 
   window.backend.load(successHandler, window.backend.onError);
 
-  window.updateWizards = updateWizards;
+  window.similar = {
+    onEyesChange: onEyesChange,
+    onCoatChange: onCoatChange
+  };
 
 })();
