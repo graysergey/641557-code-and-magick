@@ -24,7 +24,7 @@
     var fragment = document.createDocumentFragment();
     var takeNumber = data.length > AMOUNT_WIZARDS ? AMOUNT_WIZARDS : data.length;
 
-    similarList.innerHTML = '';
+    similarList.textContent = '';
     for (var i = 0; i < takeNumber; i++) {
       fragment.appendChild(renderWizard(data[i]));
     }
