@@ -40,12 +40,12 @@
   };
 
 
-  var onEyesChange = function (color) {
+  var onChangeEyesColor = function (color) {
     eyesColor = color;
     window.debounce(updateWizards);
   };
 
-  var onCoatChange = function (color) {
+  var onChangeCoatColor = function (color) {
     coatColor = color;
     window.debounce(updateWizards);
   };
@@ -58,8 +58,8 @@
   window.backend.load(successHandler, window.backend.onError);
 
   window.similar = {
-    onEyesChange: onEyesChange,
-    onCoatChange: onCoatChange
+    onChangeEyesColor: onChangeEyesColor,
+    onChangeCoatColor: onChangeCoatColor
   };
 
 })();

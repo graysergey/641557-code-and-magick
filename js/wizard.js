@@ -12,7 +12,7 @@
       .coatColors[window.util.getRandomIndex(window.initialDataWizards.coatColors)];
     coatWizard.style.fill = newColor;
     inputCoatWizard.setAttribute('value', newColor);
-    window.similar.onCoatChange(newColor);
+    window.similar.onChangeCoatColor(newColor);
   });
 
   // Обработчик цвета глаз
@@ -23,7 +23,7 @@
       .eyesColors[window.util.getRandomIndex(window.initialDataWizards.eyesColors)];
     eyesWizard.style.fill = newColor;
     inputEyesWizard.setAttribute('value', newColor);
-    window.similar.onEyesChange(newColor);
+    window.similar.onChangeEyesColor(newColor);
   });
 
   // Обработчик цвета фаерболов
