@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var AMOUNT_WIZARDS = 4;
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -21,7 +22,7 @@
 
   window.render = function (data) {
     var fragment = document.createDocumentFragment();
-    var takeNumber = data.length > 4 ? 4 : data.length;
+    var takeNumber = data.length > AMOUNT_WIZARDS ? AMOUNT_WIZARDS : data.length;
 
     similarList.innerHTML = '';
     for (var i = 0; i < takeNumber; i++) {
