@@ -23,6 +23,7 @@
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
+    window.onLoadAvatar();
 
     // записываем стартовые координаты попапа
     popupStartCoordinates = {
